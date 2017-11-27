@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <body>
+    <button id="raw_copy">Raw Copy <span class="speed">(untested)</span></button>
+    <button id="clipboardjs">ClipboardJS <span class="speed">(untested)</span></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="raw_copy.js"></script>
+
+    <script>
+      var a = "a";
+      for (var i = 0; i < 23; ++i) {
+        a = a + a;
+      }
+
+      document.querySelector("#raw_copy").addEventListener("click", function() {
+        var start = +new Date();
+
+        raw_copy(a);
+
+        setTimeout(function() {
+          document.querySelector("#raw_copy > .speed").textContent = (+new Date() - start) + "ms";
+        }, 0);
+      });
+
+      var start;
+      new Clipboard('#clipboardjs', {
+        text: function() {
+          start = +new Date();
+          console.log("start time: " + start);
+          return a;
+        }
+      }).on('success', function(e) {
+        setTimeout(function() {
+          document.querySelector("#clipboardjs > .speed").textContent = (+new Date() - start) + "ms";
+          console.log("end time: " + (+new Date()));
+        }, 0);
+      });
+    </script>
+  </body>
+</html>
