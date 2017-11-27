@@ -32,14 +32,13 @@
       var cb = new Clipboard('#clipboardjs', {
         text: function() {
           start = +new Date();
-          console.log("start time: " + start);
           return a;
         }
       })
+
       cb.on('success', function(e) {
         setTimeout(function() {
           document.querySelector("#clipboardjs > .speed").textContent = (+new Date() - start) + "ms";
-          console.log("end time: " + (+new Date()));
         }, 0);
       });
 
