@@ -108,6 +108,11 @@
         succeeded = false;
       }
 
+      // If we got an error while the callback was running, re-throw it.
+      if (error) {
+        throw error;
+      }
+
       // Check if it failed, and raise an exception in that case
       if (!succeeded) {
         throw new Error("ExecCommand copy failed");
@@ -117,11 +122,6 @@
         throw new Error("This browser does not support the copy clipboard event");
 
         // XXX(todo): Fallback and try filling in dummy.value/re-execing here?
-      }
-
-      // If we got an error while the callback was running, re-throw it.
-      if (error) {
-        throw error;
       }
     } finally {
       document.body.removeEventListener("copy", callback);

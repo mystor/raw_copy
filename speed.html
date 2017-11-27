@@ -16,7 +16,12 @@
       document.querySelector("#raw_copy").addEventListener("click", function() {
         var start = +new Date();
 
-        raw_copy(a);
+        try {
+          raw_copy(a);
+        } catch(e) {
+          document.querySelector("#raw_copy > .speed").textContent = "errored: " + e;
+          return;
+        }
 
         setTimeout(function() {
           document.querySelector("#raw_copy > .speed").textContent = (+new Date() - start) + "ms";
