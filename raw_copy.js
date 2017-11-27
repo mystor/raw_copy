@@ -105,7 +105,7 @@
       try {
         succeeded = document.execCommand("copy");
       } catch (e) {
-        succeeded = false;
+        throw new Error("An error was thrown by ExecCommand: " + e);
       }
 
       // If we got an error while the callback was running, re-throw it.
