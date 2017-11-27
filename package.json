@@ -1,0 +1,23 @@
+{
+  "name": "raw_copy",
+  "version": "0.1.0",
+  "description": "An API to just copy something to the clipboard",
+  "main": "raw_copy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "uglifyjs -cmo raw_copy.min.js raw_copy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mystor/raw_copy.git"
+  },
+  "author": "Nika Layzell <nika@thelayzells.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mystor/raw_copy/issues"
+  },
+  "homepage": "https://github.com/mystor/raw_copy#readme",
+  "devDependencies": {
+    "uglify-js": "^3.2.0"
+  }
+}

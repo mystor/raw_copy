@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <body>
+    <button id="hello">Copy "Hello" to the clipboard</button>
+    <button id="big">Copy ~8 MB of "a"s to the clipboard</button>
+
+    <!-- This text area exists so it's easy to check what's on the clipboard -->
+    <textarea></textarea>
+
+    <script src="raw_copy.js"></script>
+    <script>
+      document.querySelector("#hello").addEventListener("click", function() {
+        let start = +new Date();
+        raw_copy("Hello");
+
+        console.log("The copy took " + (new Date() - start) + "ms");
+      });
+
+      document.querySelector("#big").addEventListener("click", function() {
+        let a = "a";
+        // 2^23 ~= 8MB
+        for (let i = 0; i < 23; ++i) {
+          a = a + a;
+        }
+        let start = +new Date();
+        raw_copy(a);
+
+        console.log("The copy took " + (new Date() - start) + "ms");
+      });
+    </script>
+  </body>
+</html>
