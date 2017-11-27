@@ -29,17 +29,22 @@
       });
 
       var start;
-      new Clipboard('#clipboardjs', {
+      var cb = new Clipboard('#clipboardjs', {
         text: function() {
           start = +new Date();
           console.log("start time: " + start);
           return a;
         }
-      }).on('success', function(e) {
+      })
+      cb.on('success', function(e) {
         setTimeout(function() {
           document.querySelector("#clipboardjs > .speed").textContent = (+new Date() - start) + "ms";
           console.log("end time: " + (+new Date()));
         }, 0);
+      });
+
+      cb.on('error', function(e) {
+        document.querySelector("#clipboardjs > .speed").textContent = "errored: " + e;
       });
     </script>
   </body>
